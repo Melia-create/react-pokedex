@@ -8,8 +8,11 @@ function App() {
   });
   return (
     <div className="App">
-      <h3>HELLO WORLD</h3>
-
+      <ApolloProvider client={client}>
+      <main>
+        I'm a pokemon!
+      </main>
+      </ApolloProvider>
     </div>
   );
 }
