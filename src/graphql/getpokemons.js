@@ -1,5 +1,6 @@
 import gql from 'graphql-tag';
 
+
 export const GETPOKEMONS = gql `
 query pokemons($first: Int!) {
     pokemons(first: $first) {
@@ -16,3 +17,5 @@ query pokemons($first: Int!) {
         }
     }
 }`
+
+export default GETPOKEMONS;
