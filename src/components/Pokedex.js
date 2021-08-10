@@ -1,10 +1,21 @@
 import React from 'react';
+import { AppBar, Toolbar, Grid } from '@material-ui/core';
 
 const Pokedex = () => {
     return (
-        <div>
-            Pokedex Page
-        </div>
+        <>
+            <AppBar position="static">
+                <Toolbar />
+            </AppBar>
+            <Grid container spacing={2}>
+                <Grid item xs={2}>
+                    Item One
+                </Grid>
+                <Grid item xs={2}>
+                    Item Two
+                </Grid>
+            </Grid>
+        </>
     );
 }
 
