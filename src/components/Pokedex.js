@@ -6,7 +6,8 @@ import {
     Card,
     CardMedia,
     CardContent,
-    CircularProgress
+    CircularProgress,
+    Typography,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import mockData from '../data/mockData';
@@ -17,7 +18,15 @@ const useStyles = makeStyles({
         paddingLeft: "50px",
         paddingRight: "50px",
     },
+    cardMedia: {
+        margin: "auto"
+
+    },
+    typeTypography: {
+        textTransform:"capitalize"
+    }
 });
+
 
 const Pokedex = () => {
     const classes = useStyles();
@@ -33,9 +42,11 @@ const Pokedex = () => {
             <Grid item xs={4} key={pokemonId}>
                 <Card>
                     <CardMedia className={classes.cardMedia}
-                    image={sprite}
-                    style= {{width: "130px", height: "130px"}}/>
-                    <CardContent>HELLO</CardContent>
+                        image={sprite}
+                        style={{ width: "130px", height: "130px" }} />
+                    <CardContent className={classes.cardContent}>
+                        <Typography className={classes.typeTypography}>{`${id}.${name}`}</Typography>
+                    </CardContent>
                 </Card>
             </Grid>
         );
