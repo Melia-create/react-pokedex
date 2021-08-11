@@ -1,7 +1,15 @@
-import React from 'react';
-import { AppBar, Toolbar, Grid, Card, CardContent, CircularProgress } from '@material-ui/core';
+import React, { useState } from 'react';
+import {
+    AppBar,
+    Toolbar,
+    Grid,
+    Card,
+    CardMedia,
+    CardContent,
+    CircularProgress
+} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import MockData from '../data/MockData';
+import mockData from '../data/mockData';
 
 const useStyles = makeStyles({
     pokedexContainer: {
@@ -11,21 +19,29 @@ const useStyles = makeStyles({
     },
 });
 
-const getPokemonCard = () => {
-    return (
-        <Grid item xs={4}>
-            <Card>
-                <CardContent>HELLO</CardContent>
-            </Card>
-        </Grid>
-    );
-
-};
-
 const Pokedex = () => {
     const classes = useStyles();
 
-    const [pokemonData, setPokemonData] = useState(MockData)
+    const [pokemonData, setPokemonData] = useState(mockData);
+
+    const getPokemonCard = (pokemonId) => {
+        console.log(pokemonData[`${pokemonId}`]);
+
+        const { id, name } = pokemonData[`${pokemonId}`];
+        const sprite = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
+        return (
+            <Grid item xs={4} key={pokemonId}>
+                <Card>
+                    <CardMedia className={classes.cardMedia}
+                    image={sprite}
+                    style= {{width: "130px", height: "130px"}}/>
+                    <CardContent>HELLO</CardContent>
+                </Card>
+            </Grid>
+        );
+
+    };
+
 
     return (
         <>
@@ -34,14 +50,12 @@ const Pokedex = () => {
             </AppBar>
             {pokemonData ? (
                 <Grid container spacing={2} className={classes.pokedexContainer}>
-                    {getPokemonCard()}
-                    {getPokemonCard()}
-                    {getPokemonCard()}
-                    {getPokemonCard()}
+                    {Object.keys(pokemonData).map(pokemonId =>
+                        getPokemonCard(pokemonId))}
                 </Grid>
             ) : (
-                    <CircularProgress />
-                )}
+                <CircularProgress />
+            )}
         </>
     );
 }
