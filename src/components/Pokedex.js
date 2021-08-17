@@ -8,8 +8,10 @@ import {
     CardMedia,
     CardContent,
     CircularProgress,
+    TextField,
     Typography,
 } from '@material-ui/core';
+import SearchIcon from '@material-ui/icons/Search'
 import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
 
@@ -31,6 +33,8 @@ const useStyles = makeStyles({
         textTransform:"capitalize"
     },
     AppBar: {
+        margin: "0",
+        padding: "0",
         backgroundColor: "rgb(156, 3, 3)"
     },
     PokeLogo: {
@@ -92,7 +96,12 @@ const Pokedex = (props) => {
         <>
             <AppBar className={classes.AppBar} position="static">
                 <img className={classes.PokeLogo}src={PokeLogo}/>
-                <Toolbar />
+                <Toolbar>
+                    <div>
+                        <SearchIcon/>
+                        <TextField/>
+                    </div>
+                </Toolbar>
             </AppBar>
             {pokemonData ? (
                 <Grid container spacing={2} className={classes.pokedexContainer}>
