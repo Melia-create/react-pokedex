@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PokeLogo from '../images/PokeLogo.png'
 import {
     AppBar,
     Toolbar,
@@ -31,6 +32,12 @@ const useStyles = makeStyles({
     },
     AppBar: {
         backgroundColor: "rgb(156, 3, 3)"
+    },
+    PokeLogo: {
+        padding:"0",
+        margin:"auto",
+        height:"125px",
+        width:"200px",
     }
 });
 
@@ -84,6 +91,7 @@ const Pokedex = (props) => {
     return (
         <>
             <AppBar className={classes.AppBar} position="static">
+                <img className={classes.PokeLogo}src={PokeLogo}/>
                 <Toolbar />
             </AppBar>
             {pokemonData ? (
