@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Typography, Link, CircularProgress, Button } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles';
+import axios from 'axios';
 
 const useStyles = makeStyles({
     typeTypography: {
@@ -16,6 +17,18 @@ const Pokemon = (props) => {
     const [pokemon, setPokemon] = useState(undefined);
     const classes = useStyles();
 
+    useEffect(() => {
+        axios
+          .get(`https://pokeapi.co/api/v2/pokemon/${pokemonId}/`)
+          .then(function (response) {
+            const { data } = response;
+            setPokemon(data);
+          })
+          .catch(function (error) {
+            setPokemon(false);
+          });
+      }, [pokemonId]);
+
     // THREE STATES
     // 1 - pokemon=undefined - getting the info
     // -> return loading bar
@@ -26,7 +39,7 @@ const Pokemon = (props) => {
 
 
 
-    const generatePokemonJSX = () => {
+    const generatePokemonJSX = (pokemon) => {
         const { name, id, species, height, weight, types, sprites } = pokemon;
         const { front_default} = sprites;
 
