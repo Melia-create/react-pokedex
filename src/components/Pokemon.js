@@ -61,7 +61,11 @@ const Pokemon = (props) => {
         );
 
     };
-    return <>{generatePokemonJSX()}</>;
+    return <>
+    {pokemon === undefined && <CircularProgress/>}
+    {pokemon !== undefined && pokemon && generatePokemonJSX(pokemon)}
+    {pokemon === false && <Typrography>These aren't the Pokemon you're looking for. </Typrography>}
+    </>;
 };
 
 export default Pokemon;
