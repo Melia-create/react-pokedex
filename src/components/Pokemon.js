@@ -19,7 +19,7 @@ const Pokemon = (props) => {
 
     useEffect(() => {
         axios
-          .get(`https://pokeapi.co/api/v2/pokemon/${pokemonId}/limit=151`)
+          .get(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`)
           .then(function (response) {
             const { data } = response;
             setPokemon(data);

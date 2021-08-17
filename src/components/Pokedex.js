@@ -8,12 +8,14 @@ import {
     CardMedia,
     CardContent,
     CircularProgress,
+    TextField,
     Typography,
 } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import SearchIcon from '@material-ui/icons/Search'
+import { fade, makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
     pokedexContainer: {
         paddingTop: "20px",
         paddingLeft: "50px",
@@ -31,15 +33,34 @@ const useStyles = makeStyles({
         textTransform:"capitalize"
     },
     AppBar: {
+        margin: "0",
+        padding: "0",
         backgroundColor: "rgb(156, 3, 3)"
+    },
+    searchCont: {
+        margin:"auto",
+    },
+    searchIcon: {
+        alignSelf: "flex-end",
+        marginBottom:"-15px",
+    },
+    searchInput: {
+        margin:"auto",
+        width:"200px",
+        color:"white"
+    },
+    //textfield input style
+    input: {
+        color:"white",
+        margin:"auto"
     },
     PokeLogo: {
         padding:"0",
         margin:"auto",
-        height:"125px",
-        width:"200px",
+        height:"auto",
+        width:"250px",
     }
-});
+}));
 
 
 const Pokedex = (props) => {
@@ -92,7 +113,14 @@ const Pokedex = (props) => {
         <>
             <AppBar className={classes.AppBar} position="static">
                 <img className={classes.PokeLogo}src={PokeLogo}/>
-                <Toolbar />
+                <Toolbar>
+                    <div className={classes.searchCont}>
+                        <SearchIcon className={classes.searchIcon}/>
+                        <TextField className={classes.searchInput}
+                        //have to add InputProps for textField
+                        InputProps={{className:classes.input}}/>
+                    </div>
+                </Toolbar>
             </AppBar>
             {pokemonData ? (
                 <Grid container spacing={2} className={classes.pokedexContainer}>
