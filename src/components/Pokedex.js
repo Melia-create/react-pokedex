@@ -28,6 +28,9 @@ const useStyles = makeStyles({
     },
     typeTypography: {
         textTransform:"capitalize"
+    },
+    AppBar: {
+        backgroundColor: "rgb(156, 3, 3)"
     }
 });
 
@@ -80,7 +83,7 @@ const Pokedex = (props) => {
 
     return (
         <>
-            <AppBar position="static">
+            <AppBar className={classes.AppBar} position="static">
                 <Toolbar />
             </AppBar>
             {pokemonData ? (
