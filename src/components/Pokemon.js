@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Typography } from '@material-ui/core';
+import { Typography, Link, CircularProgress, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles({
@@ -10,7 +10,7 @@ const useStyles = makeStyles({
 })
 
 const Pokemon = (props) => {
-    const { match } = props;
+    const { history, match } = props;
     const { params } = match;
     const { pokemonId } = params;
     const [pokemon, setPokemon] = useState(undefined);
@@ -28,7 +28,7 @@ const Pokemon = (props) => {
 
     const generatePokemonJSX = () => {
         const { name, id, species, height, weight, types, sprites } = pokemon;
-        const { front_default} = sprite;
+        const { front_default} = sprites;
 
         const spriteClick = () => {
 
@@ -64,7 +64,10 @@ const Pokemon = (props) => {
     return <>
     {pokemon === undefined && <CircularProgress/>}
     {pokemon !== undefined && pokemon && generatePokemonJSX(pokemon)}
-    {pokemon === false && <Typrography>These aren't the Pokemon you're looking for. </Typrography>}
+    {pokemon === false && <Typography>These aren't the Pokemon you're looking for. </Typography>}
+    <Button variant="contained" onClick={() => history.push("/")}>
+        Back to Pokedex!
+    </Button>
     </>;
 };
 
