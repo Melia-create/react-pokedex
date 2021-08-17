@@ -49,6 +49,7 @@ const useStyles = makeStyles(theme => ({
         width:"200px",
         color:"white"
     },
+
     //textfield input style
     input: {
         color:"white",
@@ -68,6 +69,11 @@ const Pokedex = (props) => {
     const classes = useStyles();
 
     const [pokemonData, setPokemonData] = useState({});
+    const [filter, setFilter] = useState("");
+
+    const handleSearchChange = (e) => {
+        setFilter(e.target.value);
+    };
 
     useEffect(() => {
         axios
@@ -116,15 +122,20 @@ const Pokedex = (props) => {
                 <Toolbar>
                     <div className={classes.searchCont}>
                         <SearchIcon className={classes.searchIcon}/>
-                        <TextField className={classes.searchInput}
+                        <TextField 
+                        onChange={handleSearchChange}
+                        className={classes.searchInput}
                         //have to add InputProps for textField
-                        InputProps={{className:classes.input}}/>
+                        InputProps={{className:classes.input}}
+                        placeholder="...Pikachu"
+                        variant="standard"/>
                     </div>
                 </Toolbar>
             </AppBar>
             {pokemonData ? (
                 <Grid container spacing={2} className={classes.pokedexContainer}>
                     {Object.keys(pokemonData).map(pokemonId =>
+                    pokemonData[pokemonId].name.includes(filter) &&
                         getPokemonCard(pokemonId))}
                 </Grid>
             ) : (
