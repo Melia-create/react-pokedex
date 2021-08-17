@@ -22,13 +22,18 @@ const useStyles = makeStyles({
         margin: "auto"
 
     },
+    cardContent: {
+        textAlign:"center"
+
+    },
     typeTypography: {
         textTransform:"capitalize"
     }
 });
 
 
-const Pokedex = () => {
+const Pokedex = (props) => {
+    const { history } = props;
     const classes = useStyles();
 
     const [pokemonData, setPokemonData] = useState(mockData);
@@ -40,12 +45,12 @@ const Pokedex = () => {
         const sprite = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
         return (
             <Grid item xs={4} key={pokemonId}>
-                <Card>
+                <Card onClick= { () => {history.push(`/${pokemonId}`)}}>
                     <CardMedia className={classes.cardMedia}
                         image={sprite}
                         style={{ width: "130px", height: "130px" }} />
                     <CardContent className={classes.cardContent}>
-                        <Typography className={classes.typeTypography}>{`${id}.${name}`}</Typography>
+                        <Typography className={classes.typeTypography}>{`${id}. ${name}`}</Typography>
                     </CardContent>
                 </Card>
             </Grid>
