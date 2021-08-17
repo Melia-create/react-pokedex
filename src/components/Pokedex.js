@@ -49,9 +49,9 @@ const Pokedex = (props) => {
                 newPokemonData[index + 1] = {
                     id: index + 1,
                     name: pokemon.name,
-                    sprite: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/
-                    ${index + 1}
-                    .png`,
+                    sprite: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
+                        index + 1
+                      }.png`,
                 };
             });
             setPokemonData(newPokemonData);
