@@ -135,7 +135,7 @@ const Pokedex = (props) => {
             {pokemonData ? (
                 <Grid container spacing={2} className={classes.pokedexContainer}>
                     {Object.keys(pokemonData).map(pokemonId =>
-                    pokemonData[pokemonId].name.includes(filter) && 
+                    pokemonData[pokemonId].name.includes(filter) &&
                         getPokemonCard(pokemonId))}
                 </Grid>
             ) : (
